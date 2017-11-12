@@ -14,6 +14,14 @@
 
 # Linux系统安装项目过程
 
+开发环境:
+
+Ubuntu:16.04 LST
+
+Redis:4.0.2
+
+MongoDB:3.2.17
+
 ### 安装Redis
 
 ```

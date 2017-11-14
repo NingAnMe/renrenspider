@@ -18,6 +18,3 @@ if __name__ == '__main__':
             print 'exist!'
         else:
             print 'not exist!'
-
-
-

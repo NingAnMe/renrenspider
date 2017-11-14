@@ -12,7 +12,7 @@
 
 - RedisPipeline将Item传给pipelines,pipelines对数据进行清洗,储存
 
-# Linux系统安装项目过程
+# 使用项目
 
 开发环境:
 
@@ -21,6 +21,14 @@ Ubuntu:16.04 LST
 Redis:4.0.2
 
 MongoDB:3.2.17
+
+### 下载安装项目
+
+```
+$ git clone
+$
+$
+```
 
 ### 安装Redis
 
@@ -74,9 +82,11 @@ REDIS_HOST = '127.0.0.1'
 REDIS_PORT = 6379
 
 ### 在redis中保持scrapy-redis用到的各个队列，从而允许暂停和暂停后恢复
+
 SCHEDULER_PERSIST = True
 
 ### 使用本地scrapy-redis-bloomfilter去重方式的去重队列信息，Redis数据库的连接信息
+
 FILTER_URL = None
 FILTER_HOST = 'localhost'
 FILTER_PORT = 6379
@@ -84,9 +94,11 @@ FILTER_DB = 0
 SCHEDULER_QUEUE_CLASS = 'renrenyingshi.scrapy_redis.queue.SpiderPriorityQueue'
 
 ### 阿布云隧道代理的账号密码，启用随机代理中间件才有效
+
 PROXY_USER_PASSWOED = 'HP1II6G9LCCN6PMD:F1D1F5D43E06B603'
 
 #### MongoDB数据库配置
+
 MONGO_URI = 'mongodb://127.0.0.1:27017,127.0.0.1:27018'
 MONGO_DATABASE='renren'
 REPLICASET = 'repset'

@@ -6,7 +6,7 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import re
 import pymongo
-from renrenyingshi.items import RenrenDetailItem
+from renrenyingshi.items import RenrenDetailItem, ZimuDetailItem
 
 class RenrenPipeline(object):
     def __init__(self, mongo_uri, mongo_db, replicaset):
@@ -33,10 +33,17 @@ class RenrenPipeline(object):
     def process_item(self, item, spider):
         if isinstance(item, RenrenDetailItem):
             self._process_renren_detail_item(item)
-        else:
+            return item
+        elif isinstance(item, ZimuDetailItem):
+            self._process_zimu_detail_item(item)
             return item
 
     def _process_renren_detail_item(self, item):
         """处理电影详细信息
         """
         self.db.moviedetail.insert(dict(item))
+
+    def _process_zimu_detail_item(self, item):
+        """处理字幕详细信息
+        """
+        self.db.zimudetail.insert(dict(item))

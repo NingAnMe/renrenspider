@@ -1,8 +1,8 @@
 # 人人影视网爬虫
 
-本人喜欢看美剧和美国电影，人人影视网可能某一天就会因为一些因素关闭，再也找不到像这样整理好的影视下载资源，所以写这个项目，把全站的下载链接采集下来，保存到自己的服务器，以备万一。
+采集人人影视网和字幕库所有的数据，采集的数据可以建一个影视资源站。
 
-本项目使用了Scrapy分布式架构,使用scrapy-redis组件实现,Redis作为消息队列,MongoDB储存数据,防止服务器宕机,使用了MongoDB群集功能
+使用scrapy-redis组件实现了Scrapy分布式架构,Redis作为消息队列,MongoDB储存数据,防止服务器宕机,增加了MongoDB群集功能。
 
 数据流向:
 
@@ -66,10 +66,37 @@ $ rs.initiate(config)
 $ rs.status()
 ```
 
-# 任务队列
+# 配置settings.py文件，如果上传到服务器使用，请修改文件中以下配置
+
+### Redis数据库的连接信息
+
+REDIS_HOST = '127.0.0.1'
+REDIS_PORT = 6379
+
+### 在redis中保持scrapy-redis用到的各个队列，从而允许暂停和暂停后恢复
+SCHEDULER_PERSIST = True
+
+### 使用本地scrapy-redis-bloomfilter去重方式的去重队列信息，Redis数据库的连接信息
+FILTER_URL = None
+FILTER_HOST = 'localhost'
+FILTER_PORT = 6379
+FILTER_DB = 0
+SCHEDULER_QUEUE_CLASS = 'renrenyingshi.scrapy_redis.queue.SpiderPriorityQueue'
+
+### 阿布云隧道代理的账号密码，启用随机代理中间件才有效
+PROXY_USER_PASSWOED = 'HP1II6G9LCCN6PMD:F1D1F5D43E06B603'
+
+#### MongoDB数据库配置
+MONGO_URI = 'mongodb://127.0.0.1:27017,127.0.0.1:27018'
+MONGO_DATABASE='renren'
+REPLICASET = 'repset'
+
+# TO-DO
 
 - 完成对影视信息的采集功能 [√]
 
 - 完成对影视下载链接的采集功能 []
 
-- 完成对影视下载链接的更新采集功能 []
+- 使用HTTP隧道代替普通代理IP [√]
+
+- 增加字幕库网的字幕采集功能 [√]

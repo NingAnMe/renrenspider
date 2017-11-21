@@ -12,7 +12,6 @@ class ZimuSpider(scrapy.Spider):
     def parse(self, response):
         """处理start_urls中的链接经下载器返回的response
         """
-        print '开始'
         for i in xrange(1, 95001):
             url = r'http://www.zimuku.cn/detail/%s.html' % i
             request = scrapy.Request(url=url, callback=self.parse_zimu_detail)

@@ -22,12 +22,16 @@ Redis:4.0.2
 
 MongoDB:3.2.17
 
+Python：Python2
+
 ### 下载安装项目
 
 ```
-$ git clone
-$
-$
+$ git clone git@github.com:NingAnMe/renrenspider.git
+
+$ cd renrenspider
+
+$ pip install -r requirements.txt
 ```
 
 ### 安装Redis

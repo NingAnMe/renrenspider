@@ -62,6 +62,8 @@ class RenrenSpider(CrawlSpider):
         yield renren_detail_item
 
         def movie_list_url(self, url_list):
+            """补全链接地址
+            """
             new_url_list = []
             if url_list is None:
                 return
